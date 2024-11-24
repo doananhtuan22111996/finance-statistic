@@ -1,0 +1,30 @@
+package vn.finance.statistic.business.data.repository
+
+import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
+import vn.core.data.di.AnoRetrofitApiService
+import vn.core.data.model.ObjectResponse
+import vn.core.data.network.NetworkBoundService
+import vn.core.domain.ResultModel
+import vn.finance.statistic.business.StatisticApiService
+import vn.finance.statistic.business.data.model.StatisticTransactionRaw
+import vn.finance.statistic.business.domain.model.StatisticTransactionModel
+import vn.finance.statistic.business.domain.repository.GetStatisticIncomeRepository
+import javax.inject.Inject
+
+class GetStatisticIncomeRepositoryImpl @Inject constructor(@AnoRetrofitApiService private val apiService: StatisticApiService) :
+    GetStatisticIncomeRepository {
+
+    override fun getStatisticIncome(): Flow<ResultModel<StatisticTransactionModel>> =
+        object : NetworkBoundService<StatisticTransactionRaw, StatisticTransactionModel>() {
+            override suspend fun onApi(): Response<ObjectResponse<StatisticTransactionRaw>> {
+                return apiService.getStatisticIncome()
+            }
+
+            override suspend fun processResponse(request: ObjectResponse<StatisticTransactionRaw>?): ResultModel.Success<StatisticTransactionModel> {
+                return ResultModel.Success(
+                    data = request?.data?.raw2Model() ?: StatisticTransactionModel()
+                )
+            }
+        }.build()
+}
