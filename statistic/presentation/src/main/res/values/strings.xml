@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+    <string name="coming_soon">Coming Soon!</string>
+    <string name="app_exception">App Exception</string>
+    <string name="accept">Accept</string>
+    <string name="weekly">Weekly</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thus">Thus</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
+    <string name="currency_exchange">Currency Exchange</string>
+    <string name="recent_expenses">Recent Expenses</string>
+    <string name="recent_income">Recent Income</string>
+    <string name="we_couldn_t_fetch_your_data_right_now_please_check_your_internet_connection_and_try_again_if_the_issue_persists_contact_support_for_assistance">We couldn’t fetch your data right now. Please check your internet connection and try again. If the issue persists, contact support for assistance.</string>
+</resources>
