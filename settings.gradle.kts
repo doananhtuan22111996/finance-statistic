@@ -55,4 +55,4 @@ include(":demo")
 include(":statistic")
 include(":statistic:presentation")
 include(":statistic:business")
-
+include(":statisticApi")

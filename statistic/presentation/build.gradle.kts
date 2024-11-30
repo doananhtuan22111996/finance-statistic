@@ -25,10 +25,11 @@ publishing {
 
 dependencies {
     implementation(project(Configs.BuildModule.STATISTIC_BUSINESS))
+    implementation(project(Configs.BuildModule.STATISTIC_API))
+
     implementation(libs.coreDomain)
     implementation(libs.coreData)
     implementation(libs.coreCompose)
     implementation(libs.financeTheme)
-    implementation(libs.financeNavigation)
     implementation(libs.charty)
 }
