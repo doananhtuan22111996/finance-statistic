@@ -26,11 +26,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColorInt
 import kotlinx.coroutines.launch
 import vn.finance.statistic.business.domain.model.PieChartModel
 import vn.finance.statistic.business.domain.model.StatisticRecentModel
@@ -66,7 +64,7 @@ fun StatisticPieChartComponent(
         })
         HorizontalPager(
             state = pagerState, modifier = Modifier.fillMaxSize()
-        ) { page ->
+        ) { _ ->
             Column {
                 StatisticOverviewPager(charts = if (pagerState.currentPage == 0) incomeChart else expenseChart)
                 if (pagerState.currentPage == 0) Text(
@@ -101,6 +99,7 @@ private fun StatisticOverviewPager(charts: List<PieChartModel> = listOf()) {
         modifier = Modifier
             .fillMaxWidth()
             .height(400.dp),
+        descriptionStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface),
         pieChartData = pieCharts,
         ratioLineColor = MaterialTheme.colorScheme.onSurface,
     )

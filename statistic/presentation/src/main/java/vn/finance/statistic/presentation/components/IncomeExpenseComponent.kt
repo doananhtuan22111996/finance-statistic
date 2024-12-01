@@ -28,7 +28,7 @@ fun IncomeExpenseComponent(income: Number, expense: Number) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.primary),
+            .background(MaterialTheme.colorScheme.surfaceContainer),
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -50,11 +50,17 @@ private fun ColumnItem(name: String, value: Number) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(name)
+        Text(
+            name,
+//            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+        )
         Box(modifier = Modifier.height(4.dp))
         Text(
             value.formatToDollar(),
-            style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold)
+            style = MaterialTheme.typography.headlineMedium.copy(
+                fontWeight = FontWeight.SemiBold,
+//                color = MaterialTheme.colorScheme.onSurface
+            )
         )
     }
 }
