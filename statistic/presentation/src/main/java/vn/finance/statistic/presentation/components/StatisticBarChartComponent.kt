@@ -22,12 +22,12 @@ fun StatisticBarChartComponent(income: List<Number>, expense: List<Number>) {
         BarParameters(
             dataName = stringResource(R.string.income),
             data = income.map { it.toDouble() },
-            barColor = MaterialTheme.colorScheme.secondary
+            barColor = MaterialTheme.colorScheme.secondaryContainer
         ),
         BarParameters(
             dataName = stringResource(R.string.expense),
             data = expense.map { it.toDouble() },
-            barColor = MaterialTheme.colorScheme.tertiary,
+            barColor = MaterialTheme.colorScheme.tertiaryContainer,
         ),
     )
     Column {
@@ -42,7 +42,6 @@ fun StatisticBarChartComponent(income: List<Number>, expense: List<Number>) {
         ) {
             BarChart(
                 chartParameters = charts,
-                gridColor = MaterialTheme.colorScheme.primary,
                 xAxisData = listOf(
                     stringResource(R.string.mon),
                     stringResource(R.string.tue),
@@ -52,6 +51,7 @@ fun StatisticBarChartComponent(income: List<Number>, expense: List<Number>) {
                     stringResource(R.string.sat),
                     stringResource(R.string.sun)
                 ),
+                descriptionStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface),
                 isShowGrid = true,
                 animateChart = true,
                 showGridWithSpacer = true,

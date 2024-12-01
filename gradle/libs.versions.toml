@@ -4,8 +4,8 @@ coreDomain = "1.0.0"
 coreData = "1.0.0"
 coreCompose = "1.0.0"
 
-financeTheme = "1.0.1"
-financeLaunch = "1.0.1"
+financeTheme = "1.0.2"
+financeLaunch = "1.0.2"
 
 provideNetworking = "1.0.0"
 
