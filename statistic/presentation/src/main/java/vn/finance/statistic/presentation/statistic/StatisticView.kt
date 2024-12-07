@@ -13,12 +13,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import vn.core.composex.uikit.alert.AlertExceptionDialogComponent
+import vn.core.composex.uikit.loading.FullScreenLoadingDialogComponent
 import vn.core.domain.ResultModel
 import vn.finance.statistic.business.domain.model.StatisticModel
 import vn.finance.statistic.business.domain.model.StatisticTransactionModel
 import vn.finance.statistic.presentation.R
-import vn.finance.statistic.presentation.components.AlertExceptionDialogComponent
-import vn.finance.statistic.presentation.components.FullScreenLoadingDialogComponent
 import vn.finance.statistic.presentation.components.IncomeExpenseComponent
 import vn.finance.statistic.presentation.components.StatisticBarChartComponent
 import vn.finance.statistic.presentation.components.StatisticPieChartComponent
