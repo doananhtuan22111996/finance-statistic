@@ -9,11 +9,9 @@ data class PieChartRaw(
     val money: Number? = null,
     val color: String? = null,
 ) : BaseRaw() {
-    override fun raw2Model(): PieChartModel {
-        return PieChartModel(
-            name = name ?: EMPTY_STRING,
-            money = money ?: 0,
-            color = color ?: EMPTY_STRING,
-        )
-    }
+    override fun raw2Model(): PieChartModel = PieChartModel(
+        name = name ?: EMPTY_STRING,
+        money = money ?: 0,
+        color = color ?: EMPTY_STRING,
+    )
 }

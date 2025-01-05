@@ -17,8 +17,6 @@ import androidx.compose.material.icons.filled.CurrencyExchange
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
-import com.aay.compose.donutChart.PieChart
-import com.aay.compose.donutChart.model.PieChartData
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +27,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.aay.compose.donutChart.PieChart
+import com.aay.compose.donutChart.model.PieChartData
 import kotlinx.coroutines.launch
 import vn.finance.statistic.business.domain.model.PieChartModel
 import vn.finance.statistic.business.domain.model.StatisticRecentModel
@@ -41,7 +41,7 @@ fun StatisticPieChartComponent(
     incomeChart: List<PieChartModel> = listOf(),
     incomeRecent: List<StatisticRecentModel> = listOf(),
     expenseChart: List<PieChartModel> = listOf(),
-    expenseRecent: List<StatisticRecentModel> = listOf()
+    expenseRecent: List<StatisticRecentModel> = listOf(),
 ) {
     val pagerState = rememberPagerState(pageCount = { 2 })
     val coroutineScope = rememberCoroutineScope()
@@ -63,21 +63,27 @@ fun StatisticPieChartComponent(
             })
         })
         HorizontalPager(
-            state = pagerState, modifier = Modifier.fillMaxSize()
+            state = pagerState,
+            modifier = Modifier.fillMaxSize(),
         ) { _ ->
             Column {
                 StatisticOverviewPager(charts = if (pagerState.currentPage == 0) incomeChart else expenseChart)
-                if (pagerState.currentPage == 0) Text(
-                    stringResource(R.string.recent_income),
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
-                ) else Text(
-                    stringResource(R.string.recent_expenses),
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
-                )
+                if (pagerState.currentPage == 0) {
+                    Text(
+                        stringResource(R.string.recent_income),
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+                    )
+                } else {
+                    Text(
+                        stringResource(R.string.recent_expenses),
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+                    )
+                }
                 val recent = if (pagerState.currentPage == 0) incomeRecent else expenseRecent
                 recent.forEachIndexed { _, statisticRecentModel ->
                     StatisticRecentItem(
-                        statisticRecentModel, prefix = if (pagerState.currentPage == 0) "+" else "-"
+                        statisticRecentModel,
+                        prefix = if (pagerState.currentPage == 0) "+" else "-",
                     )
                 }
             }
@@ -111,31 +117,31 @@ private fun StatisticRecentItem(recent: StatisticRecentModel, prefix: String = "
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
             modifier = Modifier
                 .size(48.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(MaterialTheme.colorScheme.surfaceVariant),
         ) {
             Icon(
                 Icons.Filled.CurrencyExchange,
                 contentDescription = stringResource(R.string.currency_exchange),
-                modifier = Modifier.align(Alignment.Center)
+                modifier = Modifier.align(Alignment.Center),
             )
         }
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(horizontal = 12.dp)
+                .padding(horizontal = 12.dp),
         ) {
             Text(recent.name)
             Text(recent.date, style = MaterialTheme.typography.labelSmall)
         }
         Text(
             "$prefix${recent.money.formatToDollar()}",
-            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold)
+            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
         )
     }
 }

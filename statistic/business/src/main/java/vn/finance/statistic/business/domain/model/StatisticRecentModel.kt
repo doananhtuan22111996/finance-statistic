@@ -7,5 +7,5 @@ data class StatisticRecentModel(
     val id: Int = -1,
     val name: String = EMPTY_STRING,
     val money: Number = 0,
-    val date: String = EMPTY_STRING
+    val date: String = EMPTY_STRING,
 ) : BaseModel()

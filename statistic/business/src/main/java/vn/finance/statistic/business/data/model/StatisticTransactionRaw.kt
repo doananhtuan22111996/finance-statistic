@@ -7,10 +7,8 @@ data class StatisticTransactionRaw(
     val pieChart: List<PieChartRaw>? = null,
     val recent: List<StatisticRecentRaw>? = null,
 ) : BaseRaw() {
-    override fun raw2Model(): StatisticTransactionModel {
-        return StatisticTransactionModel(
-            pieChart = pieChart?.map { it.raw2Model() } ?: listOf(),
-            recent = recent?.map { it.raw2Model() } ?: listOf(),
-        )
-    }
+    override fun raw2Model(): StatisticTransactionModel = StatisticTransactionModel(
+        pieChart = pieChart?.map { it.raw2Model() } ?: listOf(),
+        recent = recent?.map { it.raw2Model() } ?: listOf(),
+    )
 }

@@ -35,16 +35,18 @@ fun StatisticView() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
-        StatisticContainer(statistic = statistic,
+        StatisticContainer(
+            statistic = statistic,
             income = income,
             expense = expense,
             isLoading = isLoading,
             appException = appException,
             onDismissRequest = {
                 viewModel.dismissAppException()
-            })
+            },
+        )
     }
 }
 
@@ -58,14 +60,16 @@ fun StatisticViewWithoutScrollState() {
     val expense by viewModel.expense.collectAsStateWithLifecycle()
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatisticContainer(statistic = statistic,
+        StatisticContainer(
+            statistic = statistic,
             income = income,
             expense = expense,
             isLoading = isLoading,
             appException = appException,
             onDismissRequest = {
                 viewModel.dismissAppException()
-            })
+            },
+        )
     }
 }
 
@@ -76,22 +80,24 @@ private fun StatisticContainer(
     expense: StatisticTransactionModel?,
     isLoading: Boolean,
     appException: ResultModel.AppException?,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
 ) {
     if (statistic != null && income != null && expense != null) {
         IncomeExpenseComponent(
-            income = statistic.totalIncome, statistic.totalExpense
+            income = statistic.totalIncome,
+            statistic.totalExpense,
         )
         Box(modifier = Modifier.padding(vertical = 24.dp)) {
             StatisticBarChartComponent(
-                income = statistic.barChart.income, expense = statistic.barChart.expense
+                income = statistic.barChart.income,
+                expense = statistic.barChart.expense,
             )
         }
         StatisticPieChartComponent(
             incomeChart = income.pieChart,
             incomeRecent = income.recent,
             expenseChart = expense.pieChart,
-            expenseRecent = expense.recent
+            expenseRecent = expense.recent,
         )
     }
 
@@ -102,7 +108,7 @@ private fun StatisticContainer(
     if (appException != null) {
         AlertExceptionDialogComponent(
             message = stringResource(R.string.we_couldn_t_fetch_your_data_right_now_please_check_your_internet_connection_and_try_again_if_the_issue_persists_contact_support_for_assistance),
-            onDismissRequest = onDismissRequest
+            onDismissRequest = onDismissRequest,
         )
     }
 }

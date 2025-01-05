@@ -21,7 +21,7 @@ import javax.inject.Inject
 class StatisticViewModel @Inject constructor(
     private val getStatisticUseCase: GetStatisticUseCase,
     private val getStatisticIncomeUseCase: GetStatisticIncomeUseCase,
-    private val getStatisticExpenseUseCase: GetStatisticExpenseUseCase
+    private val getStatisticExpenseUseCase: GetStatisticExpenseUseCase,
 ) : ViewModel() {
 
     private val _isLoading = MutableStateFlow(false)
@@ -50,7 +50,7 @@ class StatisticViewModel @Inject constructor(
             combine(
                 getStatisticUseCase.execute(),
                 getStatisticIncomeUseCase.execute(),
-                getStatisticExpenseUseCase.execute()
+                getStatisticExpenseUseCase.execute(),
             ) { statistic, statisticIncome, statisticExpense ->
                 if (statistic is ResultModel.Success) {
                     _statistic.value = statistic.data

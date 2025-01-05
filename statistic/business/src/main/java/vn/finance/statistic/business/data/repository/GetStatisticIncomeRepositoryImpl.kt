@@ -12,19 +12,13 @@ import vn.finance.statistic.business.domain.model.StatisticTransactionModel
 import vn.finance.statistic.business.domain.repository.GetStatisticIncomeRepository
 import javax.inject.Inject
 
-class GetStatisticIncomeRepositoryImpl @Inject constructor(@AnoRetrofitApiService private val apiService: StatisticApiService) :
-    GetStatisticIncomeRepository {
+class GetStatisticIncomeRepositoryImpl @Inject constructor(@AnoRetrofitApiService private val apiService: StatisticApiService) : GetStatisticIncomeRepository {
 
-    override fun getStatisticIncome(): Flow<ResultModel<StatisticTransactionModel>> =
-        object : NetworkBoundService<StatisticTransactionRaw, StatisticTransactionModel>() {
-            override suspend fun onApi(): Response<ObjectResponse<StatisticTransactionRaw>> {
-                return apiService.getStatisticIncome()
-            }
+    override fun getStatisticIncome(): Flow<ResultModel<StatisticTransactionModel>> = object : NetworkBoundService<StatisticTransactionRaw, StatisticTransactionModel>() {
+        override suspend fun onApi(): Response<ObjectResponse<StatisticTransactionRaw>> = apiService.getStatisticIncome()
 
-            override suspend fun processResponse(request: ObjectResponse<StatisticTransactionRaw>?): ResultModel.Success<StatisticTransactionModel> {
-                return ResultModel.Success(
-                    data = request?.data?.raw2Model() ?: StatisticTransactionModel()
-                )
-            }
-        }.build()
+        override suspend fun processResponse(request: ObjectResponse<StatisticTransactionRaw>?): ResultModel.Success<StatisticTransactionModel> = ResultModel.Success(
+            data = request?.data?.raw2Model() ?: StatisticTransactionModel(),
+        )
+    }.build()
 }
