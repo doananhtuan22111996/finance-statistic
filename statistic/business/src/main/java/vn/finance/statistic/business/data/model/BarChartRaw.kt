@@ -7,10 +7,8 @@ data class BarChartRaw(
     val income: List<Int>? = null,
     val expense: List<Int>? = null,
 ) : BaseRaw() {
-    override fun raw2Model(): BarChartModel {
-        return BarChartModel(
-            income = income?.map { it } ?: listOf(),
-            expense = expense?.map { it } ?: listOf(),
-        )
-    }
+    override fun raw2Model(): BarChartModel = BarChartModel(
+        income = income?.map { it } ?: listOf(),
+        expense = expense?.map { it } ?: listOf(),
+    )
 }

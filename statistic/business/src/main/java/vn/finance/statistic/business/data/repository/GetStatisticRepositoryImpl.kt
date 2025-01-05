@@ -12,16 +12,10 @@ import vn.finance.statistic.business.domain.model.StatisticModel
 import vn.finance.statistic.business.domain.repository.GetStatisticRepository
 import javax.inject.Inject
 
-class GetStatisticRepositoryImpl @Inject constructor(@AnoRetrofitApiService private val apiService: StatisticApiService) :
-    GetStatisticRepository {
-    override fun getStatistic(): Flow<ResultModel<StatisticModel>> =
-        object : NetworkBoundService<StatisticRaw, StatisticModel>() {
-            override suspend fun onApi(): Response<ObjectResponse<StatisticRaw>> {
-                return apiService.getStatistic()
-            }
+class GetStatisticRepositoryImpl @Inject constructor(@AnoRetrofitApiService private val apiService: StatisticApiService) : GetStatisticRepository {
+    override fun getStatistic(): Flow<ResultModel<StatisticModel>> = object : NetworkBoundService<StatisticRaw, StatisticModel>() {
+        override suspend fun onApi(): Response<ObjectResponse<StatisticRaw>> = apiService.getStatistic()
 
-            override suspend fun processResponse(request: ObjectResponse<StatisticRaw>?): ResultModel.Success<StatisticModel> {
-                return ResultModel.Success(data = request?.data?.raw2Model() ?: StatisticModel())
-            }
-        }.build()
+        override suspend fun processResponse(request: ObjectResponse<StatisticRaw>?): ResultModel.Success<StatisticModel> = ResultModel.Success(data = request?.data?.raw2Model() ?: StatisticModel())
+    }.build()
 }

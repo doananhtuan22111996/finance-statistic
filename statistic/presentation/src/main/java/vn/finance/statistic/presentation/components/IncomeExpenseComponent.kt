@@ -30,14 +30,14 @@ fun IncomeExpenseComponent(income: Number, expense: Number) {
             .clip(RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer),
         horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         ColumnItem(stringResource(R.string.income), income)
         Box(
             modifier = Modifier
                 .width(1.dp)
                 .height(30.dp)
-                .background(MaterialTheme.colorScheme.onSurface)
+                .background(MaterialTheme.colorScheme.onSurface),
         )
         ColumnItem(stringResource(R.string.expense), expense)
     }
@@ -48,7 +48,7 @@ private fun ColumnItem(name: String, value: Number) {
     Column(
         modifier = Modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             name,
@@ -60,7 +60,7 @@ private fun ColumnItem(name: String, value: Number) {
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.SemiBold,
 //                color = MaterialTheme.colorScheme.onSurface
-            )
+            ),
         )
     }
 }

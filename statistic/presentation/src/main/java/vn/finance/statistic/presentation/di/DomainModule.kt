@@ -16,17 +16,11 @@ import vn.finance.statistic.business.domain.usecase.GetStatisticUseCase
 class DomainModule {
 
     @Provides
-    fun provideGetStatisticUseCase(repository: GetStatisticRepository): GetStatisticUseCase {
-        return GetStatisticUseCase(repository)
-    }
+    fun provideGetStatisticUseCase(repository: GetStatisticRepository): GetStatisticUseCase = GetStatisticUseCase(repository)
 
     @Provides
-    fun provideGetStatisticIncomeUseCase(repository: GetStatisticIncomeRepository): GetStatisticIncomeUseCase {
-        return GetStatisticIncomeUseCase(repository)
-    }
+    fun provideGetStatisticIncomeUseCase(repository: GetStatisticIncomeRepository): GetStatisticIncomeUseCase = GetStatisticIncomeUseCase(repository)
 
     @Provides
-    fun provideGetStatisticExpenseUseCase(repository: GetStatisticExpenseRepository): GetStatisticExpenseUseCase {
-        return GetStatisticExpenseUseCase(repository)
-    }
+    fun provideGetStatisticExpenseUseCase(repository: GetStatisticExpenseRepository): GetStatisticExpenseUseCase = GetStatisticExpenseUseCase(repository)
 }

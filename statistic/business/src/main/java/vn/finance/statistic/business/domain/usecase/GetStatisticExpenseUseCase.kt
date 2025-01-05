@@ -7,9 +7,6 @@ import vn.finance.statistic.business.domain.model.StatisticTransactionModel
 import vn.finance.statistic.business.domain.repository.GetStatisticExpenseRepository
 import javax.inject.Inject
 
-class GetStatisticExpenseUseCase @Inject constructor(private val repository: GetStatisticExpenseRepository) :
-    BaseUseCase<Unit, ResultModel<StatisticTransactionModel>>() {
-    override fun execute(vararg params: Unit?): Flow<ResultModel<StatisticTransactionModel>> {
-        return repository.getStatisticExpense()
-    }
+class GetStatisticExpenseUseCase @Inject constructor(private val repository: GetStatisticExpenseRepository) : BaseUseCase<Unit, ResultModel<StatisticTransactionModel>>() {
+    override fun execute(vararg params: Unit?): Flow<ResultModel<StatisticTransactionModel>> = repository.getStatisticExpense()
 }
